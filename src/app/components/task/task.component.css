@@ -5,3 +5,23 @@
   width: 340px;
   padding: 5px;
 }
+
+.task-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+label {
+  cursor: pointer;
+  user-select: none;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: .5rem;
+  cursor: pointer;
+}

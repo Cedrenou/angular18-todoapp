@@ -4,3 +4,10 @@
 html {
   font-family: "Nunito", sans-serif;
 }
+
+button {
+  border: none;
+  background: none;
+  box-shadow: none;
+  cursor: pointer;
+}
