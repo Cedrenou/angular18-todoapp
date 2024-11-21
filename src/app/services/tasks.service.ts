@@ -9,15 +9,15 @@ export class TasksService {
     {
       id: '1',
       taskName: 'Faire la vaisselle',
-      taskDate: new Date('2021-10-15'),
+      taskDate: new Date('2021-09-30'),
       done: false
     },
     {
       id: '2',
-      taskName: 'Sortir le chien',
-      taskDate: new Date('2021-10-17'),
-      done: false
-    },
+      taskName: 'Faire le ménage',
+      taskDate: new Date('2021-09-30'),
+      done: true
+    }
   ]);
 
   createTask(taskName: string, taskDate: string): void {
@@ -34,4 +34,15 @@ export class TasksService {
   readTasks(): Task[] {
     return this.tasksSignal();
   }
+
+  updateTaskStatus(id: string, status: boolean): void {
+    this.tasksSignal.update((tasks => tasks.map(task => task.id !== id ? task : {...task, done: status})
+    ));
+  }
+
+  deleteTask(id: string): void {
+    this.tasksSignal.update(tasks => tasks.filter(task => task.id !== id));
+  }
+
+
 }
