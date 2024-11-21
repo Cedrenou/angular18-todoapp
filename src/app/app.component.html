@@ -1,5 +1,6 @@
 <main class="main">
   <h3>A faire</h3>
+
   <form [formGroup]="taskForm" (ngSubmit)="addTask($event)">
     <label for="taskName">Nom de la tâche</label>
     <br>
@@ -12,8 +13,12 @@
     <input type="submit" value="créer" />
   </form>
 
+  <app-taskshead [tasks]="tasks"/>
+
   @for(task of tasks; track task.id) {
-    <app-task [task]="task" />
+    <app-task [task]="task"
+              (onTaskStatusChange)="updateTaskStatus($event[0], $event[1])"
+              (OnTaskDelete)="deleteTask($event)" />
   } @empty {
     <p>Aucune tâche à réaliser</p>
   }

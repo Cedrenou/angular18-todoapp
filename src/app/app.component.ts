@@ -5,11 +5,12 @@ import {TasksService} from './services/tasks.service'
 import Task from './interfaces/task';
 import {JsonPipe} from '@angular/common'
 import {TaskComponent} from './components/task/task.component'
+import {TasksheadComponent} from './components/taskshead/taskshead.component'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ReactiveFormsModule, JsonPipe, TaskComponent],
+  imports: [RouterOutlet, ReactiveFormsModule, JsonPipe, TaskComponent, TasksheadComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -34,5 +35,15 @@ export class AppComponent implements OnInit {
     this.taskService.createTask(taskName!, taskDate!);
     this.tasks = this.taskService.readTasks();
     this.taskForm.reset();
+  }
+
+  updateTaskStatus(status: boolean, id: string): void {
+    this.taskService.updateTaskStatus(id, status);
+    this.tasks = this.taskService.readTasks();
+  }
+
+  deleteTask(id: string): void {
+    this.taskService.deleteTask(id);
+    this.tasks = this.taskService.readTasks();
   }
 }
